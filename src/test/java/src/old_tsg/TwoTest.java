@@ -1,4 +1,4 @@
-package src.tenSquareGames;
+package src.old_tsg;
 
 import org.junit.jupiter.api.Test;
 

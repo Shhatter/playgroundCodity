@@ -1,14 +1,39 @@
-package src.tenSquareGames;
+package src.old_tsg;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class One {
 
+    public static int updatedSolution(String word) {
+
+        return generateAllPossibilities(word).stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+            .filter(x -> x.getValue().intValue() == 1).findFirst()
+            .orElseThrow(IllegalArgumentException::new).getKey().length();
+
+    }
+
+    private static List<String> generateAllPossibilities(String word) {
+
+        var result = new ArrayList<String>();
+        for (int i = 0; i < word.length(); i++) {
+            for (int j = i + 1; j <= word.length(); j++) {
+
+                var str = word.substring(i, j);
+                if (str.length() >= 2) {
+                    result.add(str);
+                }
+
+            }
+        }
+        return result;
+    }
+
     public static int solution(String word) {
-        List<Integer> occurrences = new ArrayList<>();
         int shortest = 300;
 
         if (word == null || word.length() == 0) {
@@ -33,20 +58,6 @@ public class One {
         }
         return shortest;
     }
-
-    public static void getCount(String word, List<Integer> occurrences, int i, int j) {
-        Pattern pattern = Pattern.compile(word.substring(i, j + 1));
-        Matcher matcher = pattern.matcher(word);
-        int count = 0;
-        while (matcher.find()) {
-            count += 1;
-        }
-        occurrences.add(count);
-    }
-
-
-
-
 
     static int countFreq(String pat, String txt) {
         int M = pat.length();
@@ -81,3 +92,18 @@ public class One {
     }
 
 }
+
+/*
+https://www.geeksforgeeks.org/smallest-substring-occurring-only-once-in-a-given-string/
+    Given a string S consisting of N lowercase alphabets, the task is to find the length of the smallest substring in S whose occurrence is exactly 1.
+
+    Examples:
+
+    Input: S = “abaaba”
+    Output: 2
+    Explanation:
+    The smallest substring in the string S, whose occurrence is exactly 1 is “aa” . Length of this substring is 2.
+    Therefore, print 2.
+/
+    Input: S = “zyzyzyz”
+    Output: 5*/

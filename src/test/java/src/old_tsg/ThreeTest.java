@@ -1,4 +1,4 @@
-package src.tenSquareGames;
+package src.old_tsg;
 
 import static org.junit.jupiter.api.Assertions.*;
 

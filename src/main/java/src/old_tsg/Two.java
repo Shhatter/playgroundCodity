@@ -1,4 +1,4 @@
-package src.tenSquareGames;
+package src.old_tsg;
 
 public class Two {
 
