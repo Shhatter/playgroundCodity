@@ -11,7 +11,7 @@ class T2 {
     @Test
     void solution() {
 
-//        assertEquals(16, test2.solution());
+        assertEquals(5, test2.solution("azABaabza"));
     }
 
 }
